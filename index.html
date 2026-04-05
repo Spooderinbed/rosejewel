@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tsukiyo Gems | Fine Jewelry</title>
+  <meta name="description"
+    content="Shop handcrafted custom rings featuring sapphires, diamonds, emeralds, and rubies at Tsukiyo Gems.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles/global.css">
+  <link rel="stylesheet" href="styles/catalog.css"> <!-- Reused for product cards -->
+  <link rel="stylesheet" href="styles/home.css">
+  <link rel="stylesheet" href="styles/popup.css">
+</head>
+
+<body>
+
+  <!-- Announcement Bars -->
+  <div class="announcement-bar-top">
+    In the Spotlight: Diamond Birthstone Jewelry &rarr; &nbsp;|&nbsp; <strong>10% OFF Sitewide — Code
+      Auto-Applied</strong>
+  </div>
+  <div class="announcement-bar-sub">
+    <span>24/7 Customer Support | +61-413-564-130</span>
+    <span class="contact">Free Express Shipping | Free 30-Day Returns | Lifetime Warranty</span>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-main">
+      <div class="header-search">
+        <input type="text" placeholder="Search rings, gemstones...">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+      </div>
+      <div class="header-logo"><a href="index.html">TSUKIYO GEMS</a></div>
+      <div class="header-icons">
+        <button class="header-icon-btn" title="Account">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+        </button>
+        <button class="header-icon-btn" title="Wishlist">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path
+              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+          </svg>
+        </button>
+        <button class="header-icon-btn" id="open-cart-btn" title="Cart">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="9" cy="21" r="1" />
+            <circle cx="20" cy="21" r="1" />
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+          </svg>
+          <span class="cart-badge" id="cart-badge-header">0</span>
+        </button>
+      </div>
+    </div>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="catalog.html">Rings</a></li>
+        <li><a href="catalog.html?style=Engagement">Engagement Rings</a></li>
+        <li><a href="catalog.html?style=Wedding">Wedding Rings</a></li>
+        <li><a href="catalog.html?style=Solitaire">Solitaire</a></li>
+        <li><a href="catalog.html?style=Vintage">Vintage</a></li>
+        <li><a href="catalog.html?style=Eternity">Eternity</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Cart Drawer -->
+  <div id="cart-overlay"></div>
+  <div id="cart-drawer">
+    <div class="cart-drawer-header">
+      <h3>Your Bag</h3>
+      <button class="cart-close-btn" id="close-cart-btn">&times;</button>
+    </div>
+    <div class="cart-drawer-sub" id="cart-count-label">0 Items</div>
+    <div id="cart-items"></div>
+    <div class="cart-drawer-footer">
+      <div class="cart-subtotal">
+        <span>Subtotal</span>
+        <span id="cart-total">$0</span>
+      </div>
+      <button class="cart-checkout-btn">Proceed to Checkout</button>
+      <span class="cart-continue-link" id="continue-shopping">Continue Shopping</span>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <main>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <img src="assets/hero_home.png" alt="Tsukiyo Gems Luxury Rings" class="hero-bg">
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <div class="hero-text-box">
+          <h1 class="hero-title">CRAFTED TO BE EXCEPTIONAL</h1>
+          <p class="hero-subtitle">Discover handcrafted, custom gemstone rings tailored to your exact specifications.
+            Every ring tells a story.</p>
+          <a href="catalog.html" class="btn-primary">Shop All Rings</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Shop by Category -->
+    <section class="home-section">
+      <h2 class="section-title">Shop by Category</h2>
+      <div class="category-grid">
+        <a href="catalog.html?style=Solitaire" class="category-card">
+          <img src="assets/cat_solitaire.png" alt="Solitaire Rings">
+          <span class="category-label">Solitaire</span>
+        </a>
+        <a href="catalog.html?style=Halo" class="category-card">
+          <!-- Reusing a catalog image for category to save generations, focusing on Halo -->
+          <img src="assets/ring_sapphire_1775173368318.png" alt="Halo Rings">
+          <span class="category-label">Halo</span>
+        </a>
+        <a href="catalog.html?style=Vintage" class="category-card">
+          <img src="assets/cat_vintage.png" alt="Vintage Rings">
+          <span class="category-label">Vintage</span>
+        </a>
+        <a href="catalog.html?style=Three+Stone" class="category-card">
+          <img src="assets/ring_emerald_1775173397022.png" alt="Three Stone Rings">
+          <span class="category-label">Three Stone</span>
+        </a>
+        <a href="catalog.html?style=Eternity" class="category-card">
+          <img src="assets/ring_diamond_1775173381818.png" alt="Eternity Rings">
+          <span class="category-label">Eternity</span>
+        </a>
+        <a href="catalog.html?style=Fashion" class="category-card">
+          <img src="assets/ring_ruby_1775173443068.png" alt="Fashion Rings">
+          <span class="category-label">Fashion</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Birthstones Section -->
+    <section class="home-section" style="background:var(--off-white); max-width:100%; padding:5rem 0;">
+      <h2 class="section-title" style="margin-bottom:2rem;">Make Birthdays More Colorful</h2>
+      <div class="birthstone-wrap" style="max-width:1440px; margin:0 auto;">
+        <div class="birthstone-grid" id="birthstone-scroll">
+          <!-- Injected via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Bestsellers -->
+    <section class="home-section">
+      <h2 class="section-title">Shop Our Bestsellers</h2>
+      <div class="bestsellers-grid" id="bestsellers-grid">
+        <!-- Injected via JS reusing catalog.js card render logic -->
+      </div>
+      <div style="text-align:center; margin-top:2.5rem;">
+        <a href="catalog.html" class="btn-primary"
+          style="background:var(--white); color:var(--black); border:1px solid var(--black)">View All Rings</a>
+      </div>
+    </section>
+
+    <!-- Shop With Confidence -->
+    <section class="confidence-section">
+      <h2 class="section-title" style="margin-bottom:2rem;">Shop with Confidence</h2>
+      <div class="confidence-grid">
+        <div class="confidence-item">
+          <svg class="confidence-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M5 9l5 5 5-5" />
+            <path d="M5 15l5 5 5-5" />
+            <path d="M10 3v16" />
+            <path d="M21 3v18H3V3z" />
+          </svg>
+          <h3 class="confidence-title">Free 30-Day Returns</h3>
+          <p class="confidence-text">Not absolutely in love? Return it within 30 days for a full refund or exchange. No
+            questions asked.</p>
+        </div>
+        <div class="confidence-item">
+          <svg class="confidence-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+            <line x1="8" y1="21" x2="16" y2="21" />
+            <line x1="12" y1="17" x2="12" y2="21" />
+          </svg>
+          <h3 class="confidence-title">Free Express Shipping</h3>
+          <p class="confidence-text">Get your custom-crafted piece delivered securely and swiftly to your door,
+            completely free of charge on all orders.</p>
+        </div>
+        <div class="confidence-item">
+          <svg class="confidence-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
+            <line x1="1" y1="10" x2="23" y2="10" />
+          </svg>
+          <h3 class="confidence-title">Easy Pay Installments</h3>
+          <p class="confidence-text">Spread the cost over 3, 6, or 12 months with 0% interest flexible payment plans
+            available at checkout.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="footer-col">
+        <h4>About Tsukiyo Gems</h4>
+        <p>We believe every piece of jewelry tells a story. Creating customized gemstone jewelry crafted to your exact
+          specifications since 2005.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Customer Care</h4>
+        <ul>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Return Policy</a></li>
+          <li><a href="#">Lifetime Warranty</a></li>
+          <li><a href="#">Ring Size Guide</a></li>
+          <li><a href="#">Gemstone Guide</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Our Jewelry</h4>
+        <ul>
+          <li><a href="catalog.html">All Rings</a></li>
+          <li><a href="catalog.html?style=Engagement">Engagement Rings</a></li>
+          <li><a href="#">Gemstone Rings</a></li>
+          <li><a href="#">Birthstone Jewelry</a></li>
+          <li><a href="#">GIA Certified</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Newsletter</h4>
+        <p>Subscribe to receive updates on new collections, promotions and styling tips.</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="Email Address">
+          <button type="button">Subscribe</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Tsukiyo Gems — Fine Jewelry Crafted to Order.</p>
+    </div>
+  </footer>
+
+  <!-- Welcome Popup Overlay -->
+  <div class="welcome-popup-overlay" id="welcome-popup">
+    <div class="welcome-popup-content">
+      <button class="welcome-popup-close" id="welcome-popup-close">&times;</button>
+      <div class="welcome-popup-brand">TSUKIYO GEMS</div>
+      <div class="welcome-popup-title">YOUR 10%<br>WELCOME AWAITS</div>
+      <div class="welcome-popup-subtitle">Enter your email and we'll send<br>your 10% code.</div>
+      <div class="welcome-popup-form">
+        <div class="welcome-popup-input-group">
+          <input type="email" class="welcome-popup-input" placeholder="EMAIL ADDRESS" id="welcome-email">
+        </div>
+        <button class="welcome-popup-btn" id="welcome-send-btn">SEND MY CODE</button>
+        <div class="welcome-popup-msg" id="welcome-msg">Code sent securely to your email!</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/cart.js"></script>
+  <script>
+    // Open / Close Cart Logic globally
+    document.getElementById('open-cart-btn').addEventListener('click', openCartDrawer);
+    document.getElementById('close-cart-btn').addEventListener('click', closeCartDrawer);
+    document.getElementById('continue-shopping').addEventListener('click', closeCartDrawer);
+
+    // Welcome Popup Logic
+    document.addEventListener("DOMContentLoaded", () => {
+      if (!localStorage.getItem('tsukiyo_welcome_shown')) {
+        setTimeout(() => {
+          document.getElementById('welcome-popup').classList.add('show');
+        }, 1500); // slight delay before showing
+      }
+
+      const popup = document.getElementById('welcome-popup');
+      const closeBtn = document.getElementById('welcome-popup-close');
+      const sendBtn = document.getElementById('welcome-send-btn');
+      const msg = document.getElementById('welcome-msg');
+
+      // Function to close popup and mark as shown
+      const dismissPopup = () => {
+        popup.classList.remove('show');
+        localStorage.setItem('tsukiyo_welcome_shown', 'true');
+      };
+
+      closeBtn.addEventListener('click', dismissPopup);
+
+      // Close on click outside modal
+      popup.addEventListener('click', (e) => {
+        if (e.target === popup) dismissPopup();
+      });
+
+      sendBtn.addEventListener('click', () => {
+        const email = document.getElementById('welcome-email').value;
+        if (email.trim() !== '') {
+          msg.style.display = 'block';
+          sendBtn.innerText = 'SENT!';
+          setTimeout(dismissPopup, 2500); // auto-close after 2.5s
+        } else {
+          alert("Please enter a valid email address.");
+        }
+      });
+    });
+
+    // Load Birthstones
+    const birthstones = [
+      { month: 'Jan', gem: 'Garnet', img: img('garnet') },
+      { month: 'Feb', gem: 'Amethyst', img: img('amethyst') },
+      { month: 'Mar', gem: 'Aquamarine', img: img('aquamarine') },
+      { month: 'Apr', gem: 'Diamond', img: img('diamond') },
+      { month: 'May', gem: 'Emerald', img: img('emerald') },
+      { month: 'Jun', gem: 'Pearl', img: img('diamond') }, // fallback image
+      { month: 'Jul', gem: 'Ruby', img: img('ruby') },
+      { month: 'Aug', gem: 'Peridot', img: img('emerald') }, // fallback image
+      { month: 'Sep', gem: 'Sapphire', img: img('sapphire') },
+      { month: 'Oct', gem: 'Opal', img: img('morganite') }, // fallback image
+      { month: 'Nov', gem: 'Topaz', img: img('aquamarine') }, // fallback image
+      { month: 'Dec', gem: 'Tanzanite', img: img('tanzanite') }
+    ];
+
+    const bsScroll = document.getElementById('birthstone-scroll');
+    bsScroll.innerHTML = birthstones.map(b => `
+    <a href="catalog.html?gemstone=${encodeURIComponent(b.gem)}" class="birthstone-item">
+      <div class="birthstone-circle"><img src="${b.img}" alt="${b.gem}"></div>
+      <div class="birthstone-details">
+        <span class="birthstone-month">${b.month}</span>
+        <span class="birthstone-name">${b.gem}</span>
+      </div>
+    </a>
+  `).join('');
+
+
+
+    // Load Bestsellers (top 4 ratings)
+    const bestsellers = [...RINGS].sort((a, b) => b.rating - a.rating).slice(0, 4);
+    const bsGrid = document.getElementById('bestsellers-grid');
+
+    // Reused product card render logic from catalog.js
+    bsGrid.innerHTML = bestsellers.map(ring => {
+      const minPrice = formatPrice(ring.basePrice);
+      const maxPrice = formatPrice(Math.round(ring.basePrice * 1.9));
+      const swatchDots = ring.swatchColors.slice(0, 4).map((c, i) =>
+        `<div class="swatch-dot ${i === 0 ? 'active' : ''}" style="background:${c}" data-idx="${i}"></div>`
+      ).join('');
+
+      return `
+      <div class="product-card" onclick="window.location.href='product.html?id=${ring.id}'" style="cursor:pointer">
+        <div class="product-card-inner">
+          <div class="product-img-wrapper">
+            <span class="product-badge badge-best">Best Seller</span>
+            <button class="product-wishlist" onclick="event.stopPropagation()"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></button>
+            <img class="product-img-primary" src="${ring.images[0]}" alt="${ring.name}">
+            <img class="product-img-hover" src="${ring.images[1] || ring.images[0]}" alt="${ring.name}">
+            <div class="product-swatches" onclick="event.stopPropagation()">${swatchDots}</div>
+          </div>
+          <div class="product-info">
+            <p class="product-name">${ring.name}</p>
+            <p class="product-price-range">${minPrice} – ${maxPrice}</p>
+          </div>
+        </div>
+      </div>
+    `;
+    }).join('');
+  </script>
+</body>
+
+</html>

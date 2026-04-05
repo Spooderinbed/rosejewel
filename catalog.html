@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rings | Custom Fine Jewelry — Tsukiyo Gems</title>
+  <meta name="description"
+    content="Browse 40 handcrafted custom rings featuring sapphires, diamonds, emeralds, rubies, and more. Filter by metal type, shape, style and price.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles/global.css">
+  <link rel="stylesheet" href="styles/catalog.css">
+</head>
+
+<body>
+
+  <!-- Announcement Bars -->
+  <div class="announcement-bar-top">
+    In the Spotlight: Diamond Birthstone Jewelry &rarr; &nbsp;|&nbsp; <strong>10% OFF Sitewide — Code
+      Auto-Applied</strong>
+  </div>
+  <div class="announcement-bar-sub">
+    <span>24/7 Customer Support | +61-413-564-130</span>
+    <span class="contact">Free Express Shipping | Free 30-Day Returns | Lifetime Warranty</span>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-main">
+      <div class="header-search">
+        <input type="text" placeholder="Search rings, gemstones..." id="search-input">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+      </div>
+      <div class="header-logo"><a href="index.html">TSUKIYO GEMS</a></div>
+      <div class="header-icons">
+        <button class="header-icon-btn" title="Account">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+        </button>
+        <button class="header-icon-btn" title="Wishlist">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path
+              d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+          </svg>
+        </button>
+        <button class="header-icon-btn" id="open-cart-btn" title="Cart">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="9" cy="21" r="1" />
+            <circle cx="20" cy="21" r="1" />
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6" />
+          </svg>
+          <span class="cart-badge" id="cart-badge-header">0</span>
+        </button>
+      </div>
+    </div>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="catalog.html" class="active">Rings</a></li>
+        <li><a href="catalog.html?style=Engagement">Engagement Rings</a></li>
+        <li><a href="catalog.html?style=Wedding">Wedding Rings</a></li>
+        <li><a href="catalog.html?style=Solitaire">Solitaire</a></li>
+        <li><a href="catalog.html?style=Vintage">Vintage</a></li>
+        <li><a href="catalog.html?style=Eternity">Eternity</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Cart Drawer -->
+  <div id="cart-overlay"></div>
+  <div id="cart-drawer">
+    <div class="cart-drawer-header">
+      <h3>Your Bag</h3>
+      <button class="cart-close-btn" id="close-cart-btn">&times;</button>
+    </div>
+    <div class="cart-drawer-sub" id="cart-count-label">0 Items</div>
+    <div id="cart-items"></div>
+    <div class="cart-drawer-footer">
+      <div class="cart-subtotal">
+        <span>Subtotal</span>
+        <span id="cart-total">$0</span>
+      </div>
+      <button class="cart-checkout-btn">Proceed to Checkout</button>
+      <span class="cart-continue-link" id="continue-shopping">Continue Shopping</span>
+    </div>
+  </div>
+
+  <!-- Main Catalog Layout -->
+  <div style="max-width:1440px;margin:0 auto;padding:0 2rem;">
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+      <a href="catalog.html">Home</a> /
+      <a href="catalog.html">Jewelry</a> /
+      <span>Rings</span>
+    </div>
+  </div>
+
+  <div class="catalog-page">
+    <!-- Sidebar -->
+    <aside class="catalog-sidebar">
+      <div id="sidebar-filters"></div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="catalog-main">
+      <!-- Gem Category Row -->
+      <div class="gem-categories" id="gem-categories"></div>
+
+      <!-- Toolbar -->
+      <div class="catalog-toolbar">
+        <p class="result-count" id="result-count"><strong>40</strong> Custom Rings</p>
+        <select id="sort-select" class="sort-dropdown">
+          <option value="featured">Sort by: Best Seller</option>
+          <option value="new">New Arrival</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="rating">Customer Rating</option>
+        </select>
+      </div>
+
+      <!-- Product Grid -->
+      <div class="product-grid" id="product-grid"></div>
+
+      <!-- Load More -->
+      <div class="load-more-wrap">
+        <button class="load-more-btn" id="load-more-btn">Load More</button>
+      </div>
+    </main>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="footer-col">
+        <h4>About Tsukiyo Gems</h4>
+        <p>We believe every piece of jewelry tells a story. Creating customized gemstone jewelry crafted to your exact
+          specifications since 2005.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Customer Care</h4>
+        <ul>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Return Policy</a></li>
+          <li><a href="#">Lifetime Warranty</a></li>
+          <li><a href="#">Ring Size Guide</a></li>
+          <li><a href="#">Gemstone Guide</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Our Jewelry</h4>
+        <ul>
+          <li><a href="#">Engagement Rings</a></li>
+          <li><a href="#">Gemstone Rings</a></li>
+          <li><a href="#">Birthstone Jewelry</a></li>
+          <li><a href="#">Bridal Sets</a></li>
+          <li><a href="#">GIA Certified</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Newsletter</h4>
+        <p>Subscribe to receive updates on new collections, promotions and styling tips.</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="Email Address">
+          <button type="button">Subscribe</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Tsukiyo Gems — Fine Jewelry Crafted to Order.</p>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/catalog.js"></script>
+  <script>
+    // Cart open/close events
+    document.getElementById('open-cart-btn').addEventListener('click', openCartDrawer);
+    document.getElementById('close-cart-btn').addEventListener('click', closeCartDrawer);
+    document.getElementById('continue-shopping').addEventListener('click', closeCartDrawer);
+    // Search
+    document.getElementById('search-input').addEventListener('input', function () {
+      const q = this.value.toLowerCase().trim();
+      if (!q) { window.dispatchEvent(new Event('search-clear')); return; }
+      document.querySelectorAll('.product-card').forEach(card => {
+        const name = card.querySelector('.product-name')?.textContent.toLowerCase() || '';
+        card.style.display = name.includes(q) ? '' : 'none';
+      });
+    });
+  </script>
+</body>
+
+</html>

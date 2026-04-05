@@ -1,0 +1,126 @@
+/* Welcome Popup Modal Styles */
+.welcome-popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.welcome-popup-overlay.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.welcome-popup-content {
+  background-color: #000000;
+  color: #ffffff;
+  width: 90%;
+  max-width: 500px;
+  padding: 3rem 2.5rem;
+  position: relative;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
+
+.welcome-popup-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: transparent;
+  color: #ffffff;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  line-height: 1;
+}
+
+.welcome-popup-brand {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  margin-bottom: 2.5rem;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+}
+
+.welcome-popup-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.welcome-popup-subtitle {
+  font-size: 0.95rem;
+  margin-bottom: 2rem;
+  line-height: 1.4;
+}
+
+.welcome-popup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 350px;
+  margin: 0 auto;
+}
+
+.welcome-popup-input-group {
+  position: relative;
+  width: 100%;
+}
+
+.welcome-popup-input {
+  width: 100%;
+  padding: 1rem;
+  font-size: 0.9rem;
+  border: none;
+  outline: none;
+  background: #ffffff;
+  color: #000000;
+}
+
+.welcome-popup-input::placeholder {
+  color: #777;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+}
+
+.welcome-popup-btn {
+  width: 100%;
+  padding: 1rem;
+  background-color: #ffffff;
+  color: #000000;
+  border: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.welcome-popup-btn:hover {
+  opacity: 0.9;
+}
+
+.welcome-popup-msg {
+  display: none;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #8ade8a;
+}

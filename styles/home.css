@@ -1,0 +1,291 @@
+/* ============================================================
+   TSUKIYO GEMS — HOMEPAGE STYLES
+   ============================================================ */
+
+/* ---- HERO BANNER ---- */
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  background-color: var(--off-white);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right center; /* Focus on the ring hand on the right */
+  z-index: 1;
+}
+
+/* Gradient overlay to ensure text readability on the left */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.7) 40%, rgba(255,255,255,0) 70%);
+  z-index: 2;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 3;
+  max-width: 1440px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 4rem;
+}
+
+.hero-text-box {
+  max-width: 480px;
+}
+
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: 3.5rem;
+  font-weight: 500;
+  line-height: 1.1;
+  color: var(--black);
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.5px;
+}
+
+.hero-subtitle {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.btn-primary {
+  display: inline-block;
+  background: var(--black);
+  color: var(--white);
+  padding: 16px 36px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: background-color var(--transition), transform var(--transition);
+}
+
+.btn-primary:hover {
+  background: var(--text-secondary);
+  color: var(--white);
+}
+
+/* ---- SECTION FORMATTING ---- */
+.home-section {
+  padding: 5rem 2rem;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  font-weight: 500;
+  text-align: center;
+  color: var(--black);
+  margin-bottom: 3rem;
+}
+
+/* ---- SHOP BY CATEGORY ---- */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1.5rem;
+}
+
+.category-card {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background: var(--light-gray);
+  aspect-ratio: 3/4;
+}
+
+.category-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.category-card:hover img {
+  transform: scale(1.05);
+}
+
+/* Bottom shadow for text readability */
+.category-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 40%;
+  background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.category-label {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  color: var(--white);
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  z-index: 2;
+}
+
+/* ---- MAKE BIRTHDAYS MORE COLORFUL ---- */
+.birthstone-wrap {
+  position: relative;
+  padding: 0 2rem;
+}
+
+.birthstone-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+  padding: 1rem 0;
+  justify-content: center;
+}
+
+.birthstone-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform var(--transition);
+}
+
+.birthstone-item:hover {
+  transform: translateY(-5px);
+}
+
+.birthstone-circle {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  padding: 6px;
+  background: var(--white);
+  transition: border-color var(--transition);
+}
+
+.birthstone-item:hover .birthstone-circle {
+  border-color: var(--accent-gold);
+}
+
+.birthstone-circle img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.birthstone-details {
+  text-align: center;
+}
+
+.birthstone-month {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 4px;
+}
+
+.birthstone-name {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  color: var(--black);
+}
+
+
+
+
+/* ---- BESTSELLERS OVERRIDES ---- */
+.bestsellers-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+
+
+/* ---- SHOP WITH CONFIDENCE ---- */
+.confidence-section {
+  background: var(--off-white);
+  padding: 4rem 2rem;
+  margin-top: 2rem;
+}
+
+.confidence-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.confidence-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.confidence-icon {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 1.5rem;
+  color: var(--black);
+}
+
+.confidence-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+  color: var(--black);
+}
+
+.confidence-text {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+
+/* ---- RESPONSIVE DESIGN ---- */
+@media (max-width: 1200px) {
+  .hero-title { font-size: 3rem; }
+  .category-grid { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+  .bestsellers-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 900px) {
+  .hero-section { height: 500px; }
+  .hero-content { padding: 0 2rem; }
+  .hero-overlay { background: linear-gradient(90deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.85) 60%, rgba(255,255,255,0) 100%); }
+  .confidence-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .confidence-item { padding: 1rem; }
+}
+
+@media (max-width: 600px) {
+  .hero-title { font-size: 2.2rem; }
+  .hero-subtitle { font-size: 0.9rem; }
+  .category-grid { grid-template-columns: repeat(2, 1fr); }
+  .bestsellers-grid { grid-template-columns: 1fr; }
+  .hero-overlay { background: rgba(255,255,255,0.85); /* Solid overlay on mobile for reading */ }
+}

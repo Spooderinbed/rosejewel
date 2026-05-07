@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tsukiyo Gems | Fine Jewelry</title>
+  <title>Tsukiyo Gems | Fine Jewelry &amp; Estate Rings</title>
   <meta name="description"
-    content="Shop handcrafted custom rings featuring sapphires, diamonds, emeralds, and rubies at Tsukiyo Gems.">
+    content="Shop our curated collection of handcrafted rings featuring Australian opals, sapphires, citrine, smoky quartz, amethyst, turquoise, pearl, signet rings, and stackable bands.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -66,12 +66,13 @@
     </div>
     <nav class="main-nav">
       <ul>
-        <li><a href="catalog.html">Rings</a></li>
-        <li><a href="catalog.html?style=Engagement">Engagement Rings</a></li>
-        <li><a href="catalog.html?style=Wedding">Wedding Rings</a></li>
-        <li><a href="catalog.html?style=Solitaire">Solitaire</a></li>
+        <li><a href="catalog.html">All Rings</a></li>
+        <li><a href="catalog.html?style=Halo">Halo</a></li>
+        <li><a href="catalog.html?style=Cocktail">Cocktail</a></li>
         <li><a href="catalog.html?style=Vintage">Vintage</a></li>
         <li><a href="catalog.html?style=Eternity">Eternity</a></li>
+        <li><a href="catalog.html?style=Statement">Statement</a></li>
+        <li><a href="catalog.html?style=Stackable">Stackable</a></li>
       </ul>
     </nav>
   </header>
@@ -116,30 +117,29 @@
     <section class="home-section">
       <h2 class="section-title">Shop by Category</h2>
       <div class="category-grid">
-        <a href="catalog.html?style=Solitaire" class="category-card">
-          <img src="assets/cat_solitaire.png" alt="Solitaire Rings">
-          <span class="category-label">Solitaire</span>
-        </a>
         <a href="catalog.html?style=Halo" class="category-card">
-          <!-- Reusing a catalog image for category to save generations, focusing on Halo -->
-          <img src="assets/ring_sapphire_1775173368318.png" alt="Halo Rings">
+          <img src="assets/rings/IMG_9151.jpg" alt="Halo Rings" loading="lazy">
           <span class="category-label">Halo</span>
         </a>
+        <a href="catalog.html?style=Cocktail" class="category-card">
+          <img src="assets/rings/IMG_9232.jpg" alt="Cocktail Rings" loading="lazy">
+          <span class="category-label">Cocktail</span>
+        </a>
         <a href="catalog.html?style=Vintage" class="category-card">
-          <img src="assets/cat_vintage.png" alt="Vintage Rings">
+          <img src="assets/rings/IMG_9209.jpg" alt="Vintage Rings" loading="lazy">
           <span class="category-label">Vintage</span>
         </a>
-        <a href="catalog.html?style=Three+Stone" class="category-card">
-          <img src="assets/ring_emerald_1775173397022.png" alt="Three Stone Rings">
-          <span class="category-label">Three Stone</span>
+        <a href="catalog.html?style=Statement" class="category-card">
+          <img src="assets/rings/IMG_9327.jpg" alt="Statement Rings" loading="lazy">
+          <span class="category-label">Statement</span>
         </a>
         <a href="catalog.html?style=Eternity" class="category-card">
-          <img src="assets/ring_diamond_1775173381818.png" alt="Eternity Rings">
+          <img src="assets/rings/IMG_9282.jpg" alt="Eternity Rings" loading="lazy">
           <span class="category-label">Eternity</span>
         </a>
-        <a href="catalog.html?style=Fashion" class="category-card">
-          <img src="assets/ring_ruby_1775173443068.png" alt="Fashion Rings">
-          <span class="category-label">Fashion</span>
+        <a href="catalog.html?style=Stackable" class="category-card">
+          <img src="assets/rings/IMG_9343.jpg" alt="Stackable Rings" loading="lazy">
+          <span class="category-label">Stackable</span>
         </a>
       </div>
     </section>
@@ -266,6 +266,7 @@
 
   <!-- Scripts -->
   <script src="js/data.js"></script>
+  <script src="js/utils.js"></script>
   <script src="js/cart.js"></script>
   <script>
     // Open / Close Cart Logic globally
@@ -311,20 +312,20 @@
       });
     });
 
-    // Load Birthstones
+    // Load Birthstones — using real product photos
     const birthstones = [
-      { month: 'Jan', gem: 'Garnet', img: img('garnet') },
-      { month: 'Feb', gem: 'Amethyst', img: img('amethyst') },
-      { month: 'Mar', gem: 'Aquamarine', img: img('aquamarine') },
-      { month: 'Apr', gem: 'Diamond', img: img('diamond') },
-      { month: 'May', gem: 'Emerald', img: img('emerald') },
-      { month: 'Jun', gem: 'Pearl', img: img('diamond') }, // fallback image
-      { month: 'Jul', gem: 'Ruby', img: img('ruby') },
-      { month: 'Aug', gem: 'Peridot', img: img('emerald') }, // fallback image
-      { month: 'Sep', gem: 'Sapphire', img: img('sapphire') },
-      { month: 'Oct', gem: 'Opal', img: img('morganite') }, // fallback image
-      { month: 'Nov', gem: 'Topaz', img: img('aquamarine') }, // fallback image
-      { month: 'Dec', gem: 'Tanzanite', img: img('tanzanite') }
+      { month: 'Jan', gem: 'Garnet',     img: 'assets/ring_garnet_1775175264227.png' },
+      { month: 'Feb', gem: 'Amethyst',   img: 'assets/rings/IMG_9271.jpg' },
+      { month: 'Mar', gem: 'Aquamarine', img: 'assets/rings/IMG_9185.jpg' },
+      { month: 'Apr', gem: 'Diamond',    img: 'assets/rings/IMG_9295.jpg' },
+      { month: 'May', gem: 'Emerald',    img: 'assets/ring_emerald_1775173397022.png' },
+      { month: 'Jun', gem: 'Pearl',      img: 'assets/rings/IMG_9272.jpg' },
+      { month: 'Jul', gem: 'Ruby',       img: 'assets/rings/IMG_9336.jpg' },
+      { month: 'Aug', gem: 'Tourmaline', img: 'assets/rings/IMG_9283.jpg' },
+      { month: 'Sep', gem: 'Sapphire',   img: 'assets/rings/IMG_9145.jpg' },
+      { month: 'Oct', gem: 'Opal',       img: 'assets/rings/IMG_9151.jpg' },
+      { month: 'Nov', gem: 'Citrine',    img: 'assets/rings/IMG_9190.jpg' },
+      { month: 'Dec', gem: 'Turquoise',  img: 'assets/rings/IMG_9257.jpg' }
     ];
 
     const bsScroll = document.getElementById('birthstone-scroll');

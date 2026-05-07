@@ -78,21 +78,27 @@ function updateCartDrawer() {
   if (cart.length === 0) {
     itemsEl.innerHTML = `<div class="cart-empty"><p>Your bag is empty.</p><a href="catalog.html" class="btn-shop-now">Continue Shopping</a></div>`;
   } else {
-    itemsEl.innerHTML = cart.map(item => `
+    itemsEl.innerHTML = cart.map(item => {
+      const cfgParts = [];
+      if (item.quality) cfgParts.push(item.quality);
+      if (item.carat)   cfgParts.push(`${item.carat}ct`);
+      if (item.metal)   cfgParts.push(item.metal);
+      if (item.size)    cfgParts.push(`Size ${item.size}`);
+      return `
       <div class="cart-item">
         <div class="cart-item-img">
           <img src="${item.image}" alt="${item.name}" style="filter:${getMetalFilter(item.metal)}">
         </div>
         <div class="cart-item-info">
           <p class="cart-item-name">${item.name}</p>
-          <p class="cart-item-config">${item.quality} | ${item.carat}ct | ${item.metal} | Size ${item.size}</p>
+          <p class="cart-item-config">${cfgParts.join(' | ')}</p>
           <div class="cart-item-bottom">
             <span class="cart-item-price">${formatPrice(item.price)}</span>
             <button class="cart-item-remove" onclick="removeFromCart(${item.cartId})">Remove</button>
           </div>
         </div>
-      </div>
-    `).join('');
+      </div>`;
+    }).join('');
   }
   const totalEl = document.getElementById('cart-total');
   if (totalEl) totalEl.textContent = formatPrice(getCartTotal());
@@ -100,9 +106,22 @@ function updateCartDrawer() {
   if (countEl) countEl.textContent = `${getCartCount()} Item${getCartCount()!==1?'s':''}`;
 }
 
+// Wire up "Proceed to Checkout" button(s)
+function goToCheckout() {
+  if (getCartCount() === 0) {
+    // Don't bounce out to an empty checkout — open the drawer instead
+    openCartDrawer();
+    return;
+  }
+  window.location.href = 'checkout.html';
+}
+
 // Initialize badge on page load
 document.addEventListener('DOMContentLoaded', () => {
   updateCartBadge();
   const overlay = document.getElementById('cart-overlay');
   if (overlay) overlay.addEventListener('click', closeCartDrawer);
+  document.querySelectorAll('.cart-checkout-btn').forEach(btn => {
+    btn.addEventListener('click', goToCheckout);
+  });
 });

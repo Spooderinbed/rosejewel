@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tsukiyo Gems - Website Functionality Test</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 40px 20px;
+      min-height: 100vh;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      overflow: hidden;
+    }
+    .header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 40px;
+      text-align: center;
+    }
+    .header h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+    .header p {
+      font-size: 1.1em;
+      opacity: 0.9;
+    }
+    .content {
+      padding: 40px;
+    }
+    .test-section {
+      margin-bottom: 30px;
+      border-left: 4px solid #667eea;
+      padding-left: 20px;
+    }
+    .test-section h2 {
+      color: #333;
+      margin-bottom: 15px;
+      font-size: 1.3em;
+    }
+    .test-item {
+      padding: 12px 15px;
+      margin: 8px 0;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-size: 0.95em;
+    }
+    .test-item.pass {
+      background: #e8f5e9;
+      border-left: 4px solid #4caf50;
+    }
+    .test-item.fail {
+      background: #ffebee;
+      border-left: 4px solid #f44336;
+    }
+    .test-item.warn {
+      background: #fff3e0;
+      border-left: 4px solid #ff9800;
+    }
+    .icon {
+      font-size: 1.3em;
+      font-weight: bold;
+    }
+    .summary {
+      background: #f5f5f5;
+      padding: 25px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    .summary-stat {
+      display: inline-block;
+      margin: 0 20px;
+      font-size: 1.1em;
+    }
+    .summary-stat .value {
+      font-size: 2em;
+      font-weight: bold;
+      display: block;
+    }
+    .summary-stat.pass .value { color: #4caf50; }
+    .summary-stat.fail .value { color: #f44336; }
+    .summary-stat.warn .value { color: #ff9800; }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .data-table th {
+      background: #667eea;
+      color: white;
+      padding: 12px;
+      text-align: left;
+      font-weight: 600;
+    }
+    .data-table td {
+      padding: 12px;
+      border-bottom: 1px solid #eee;
+    }
+    .data-table tr:hover {
+      background: #f9f9f9;
+    }
+    .button {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1em;
+      margin-top: 20px;
+      transition: transform 0.2s;
+    }
+    .button:hover {
+      transform: translateY(-2px);
+    }
+    .filter-demo {
+      background: #f5f5f5;
+      padding: 20px;
+      border-radius: 6px;
+      margin-top: 15px;
+    }
+    .filter-demo label {
+      display: block;
+      margin: 10px 0;
+      cursor: pointer;
+    }
+    .filter-demo input {
+      margin-right: 8px;
+    }
+    .results-box {
+      background: #e8f5e9;
+      padding: 15px;
+      border-radius: 6px;
+      margin-top: 15px;
+      border-left: 4px solid #4caf50;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>🧪 Tsukiyo Gems Website</h1>
+      <p>Comprehensive Functionality Test Suite</p>
+    </div>
+
+    <div class="content">
+      <!-- Summary Section -->
+      <div class="summary" id="summary">
+        <div class="summary-stat pass">
+          <span>PASS</span>
+          <span class="value" id="pass-count">0</span>
+        </div>
+        <div class="summary-stat fail">
+          <span>FAIL</span>
+          <span class="value" id="fail-count">0</span>
+        </div>
+        <div class="summary-stat warn">
+          <span>WARNINGS</span>
+          <span class="value" id="warn-count">0</span>
+        </div>
+      </div>
+
+      <!-- All test results will be inserted here -->
+      <div id="results"></div>
+
+      <!-- Ring Data Table -->
+      <div class="test-section">
+        <h2>📊 Ring Inventory</h2>
+        <table class="data-table" id="ring-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Ring Name</th>
+              <th>Gemstone</th>
+              <th>Base Price</th>
+              <th>Available Metals</th>
+            </tr>
+          </thead>
+          <tbody id="ring-tbody"></tbody>
+        </table>
+      </div>
+
+      <!-- Filter Test -->
+      <div class="test-section">
+        <h2>🔍 Interactive Filter Test</h2>
+        <div class="filter-demo">
+          <h3>Test Filters (Select options to see results):</h3>
+          <div>
+            <strong>Filter by Gemstone:</strong>
+            <label><input type="checkbox" class="gemstone-filter" value="Opal"> Opal</label>
+            <label><input type="checkbox" class="gemstone-filter" value="Black Tourmaline"> Black Tourmaline</label>
+            <label><input type="checkbox" class="gemstone-filter" value="Ruby"> Ruby</label>
+            <label><input type="checkbox" class="gemstone-filter" value="Amethyst"> Amethyst</label>
+            <label><input type="checkbox" class="gemstone-filter" value="Black Onyx"> Black Onyx</label>
+          </div>
+          <div style="margin-top: 15px;">
+            <strong>Filter by Metal Type:</strong>
+            <label><input type="checkbox" class="metal-filter" value="White Gold"> White Gold</label>
+            <label><input type="checkbox" class="metal-filter" value="Yellow Gold"> Yellow Gold</label>
+            <label><input type="checkbox" class="metal-filter" value="Platinum"> Platinum</label>
+          </div>
+          <button class="button" onclick="clearFilters()">Clear All Filters</button>
+          <div class="results-box" id="filter-results" style="display:none;">
+            <strong>Matching Rings:</strong>
+            <div id="matching-rings-list" style="margin-top: 10px;"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pricing Test -->
+      <div class="test-section">
+        <h2>💰 Pricing Calculator Test</h2>
+        <div style="background: #f5f5f5; padding: 20px; border-radius: 6px;">
+          <label><strong>Select Ring:</strong>
+            <select id="ring-select" onchange="updatePricingTest()">
+              <option value="">-- Choose a Ring --</option>
+            </select>
+          </label>
+          <label style="margin-top: 10px; display: block;"><strong>Metal Type:</strong>
+            <select id="metal-select" onchange="updatePricingTest()">
+              <option value="">-- Choose Metal --</option>
+            </select>
+          </label>
+          <label style="margin-top: 10px; display: block;"><strong>Quality:</strong>
+            <select id="quality-select" onchange="updatePricingTest()">
+              <option value="">-- Choose Quality --</option>
+            </select>
+          </label>
+          <label style="margin-top: 10px; display: block;"><strong>Carat Weight:</strong>
+            <select id="carat-select" onchange="updatePricingTest()">
+              <option value="">-- Choose Carat --</option>
+            </select>
+          </label>
+          <div class="results-box" id="price-result" style="display:none; margin-top: 15px;">
+            <div><strong>Base Price:</strong> <span id="base-price-display">--</span></div>
+            <div><strong>Calculated Price:</strong> <span id="calculated-price-display">--</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cart Test -->
+      <div class="test-section">
+        <h2>🛒 Shopping Cart Test</h2>
+        <button class="button" onclick="testAddToCart()">Test Add to Cart</button>
+        <button class="button" onclick="testCartFunctionality()" style="margin-left: 10px;">Test Cart Display</button>
+        <div id="cart-test-result" style="margin-top: 15px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Load data and test scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/cart.js"></script>
+
+  <script>
+    const tests = [];
+    let passCount = 0, failCount = 0, warnCount = 0;
+
+    function addTest(name, status, details = '') {
+      tests.push({ name, status, details });
+      if (status === 'pass') passCount++;
+      else if (status === 'fail') failCount++;
+      else if (status === 'warn') warnCount++;
+    }
+
+    function test(name, fn) {
+      try {
+        fn();
+        addTest(name, 'pass');
+      } catch (e) {
+        addTest(name, 'fail', e.message);
+      }
+    }
+
+    // ==================== TESTS ====================
+
+    // TEST 1: Data loading
+    test("Data file loads successfully", () => {
+      if (!RINGS || !Array.isArray(RINGS)) throw new Error("RINGS is not defined");
+    });
+
+    test("Correct number of rings (8)", () => {
+      if (RINGS.length !== 8) throw new Error(`Expected 8 rings, got ${RINGS.length}`);
+    });
+
+    // TEST 2: Ring data structure
+    test("All rings have required properties", () => {
+      RINGS.forEach((ring, i) => {
+        const required = ['id', 'name', 'slug', 'sku', 'gemstone', 'basePrice', 'images', 'metals'];
+        required.forEach(prop => {
+          if (!(prop in ring)) throw new Error(`Ring ${i} missing ${prop}`);
+        });
+      });
+    });
+
+    // TEST 3: Images
+    test("All rings have valid image paths", () => {
+      RINGS.forEach((ring, i) => {
+        if (!Array.isArray(ring.images) || ring.images.length === 0) {
+          throw new Error(`Ring ${i} has no images`);
+        }
+        ring.images.forEach(img => {
+          if (!img.startsWith('assets/')) throw new Error(`Ring ${i} invalid image path: ${img}`);
+        });
+      });
+    });
+
+    // TEST 4: Pricing data
+    test("Pricing multipliers are defined", () => {
+      if (!METAL_MULTIPLIERS || !QUALITY_MULTIPLIERS || !CARAT_MULTIPLIERS) {
+        throw new Error("Missing multiplier constants");
+      }
+    });
+
+    // TEST 5: Utility functions
+    test("All utility functions exist", () => {
+      const funcs = ['getRingById', 'calculatePrice', 'formatPrice', 'getMetalFilter', 'getMetalSwatchColor'];
+      funcs.forEach(f => {
+        if (typeof window[f] !== 'function') throw new Error(`${f} not defined`);
+      });
+    });
+
+    // TEST 6: Cart functions
+    test("Cart system initialized", () => {
+      if (typeof getCart !== 'function') throw new Error("Cart functions not loaded");
+      const cart = getCart();
+      if (!Array.isArray(cart)) throw new Error("Cart is not an array");
+    });
+
+    // TEST 7: Metal filters
+    test("Metal color filters are defined", () => {
+      ['14K White Gold', '18K Yellow Gold', 'Platinum'].forEach(metal => {
+        const filter = getMetalFilter(metal);
+        if (typeof filter !== 'string') throw new Error(`Missing filter for ${metal}`);
+      });
+    });
+
+    // TEST 8: Price calculation
+    test("Price calculation works correctly", () => {
+      const ring = getRingById(1);
+      const price = calculatePrice(ring, '18K White Gold', 'Best (AAA)', '0.70');
+      if (typeof price !== 'number' || price <= 0) throw new Error("Invalid price");
+    });
+
+    // TEST 9: Ring lookup
+    test("getRingById returns correct ring", () => {
+      for (let i = 1; i <= 8; i++) {
+        const ring = getRingById(i);
+        if (!ring || ring.id !== i) throw new Error(`getRingById(${i}) failed`);
+      }
+    });
+
+    // TEST 10: Unique SKUs
+    test("All rings have unique SKUs", () => {
+      const skus = RINGS.map(r => r.sku);
+      if (skus.length !== new Set(skus).size) throw new Error("Duplicate SKUs found");
+    });
+
+    // TEST 11: Customization options
+    test("Rings have customization options", () => {
+      let gemstonesWithOptions = 0;
+      RINGS.forEach(ring => {
+        if (ring.metals && ring.metals.length > 0) gemstonesWithOptions++;
+      });
+      if (gemstonesWithOptions < 6) throw new Error("Not enough rings with customization");
+    });
+
+    // TEST 12: Professional data
+    test("Rings have professional descriptions", () => {
+      RINGS.forEach((ring, i) => {
+        if (!ring.description || ring.description.length < 100) {
+          throw new Error(`Ring ${i} has insufficient description`);
+        }
+      });
+    });
+
+    // ==================== RENDER RESULTS ====================
+
+    function renderResults() {
+      document.getElementById('pass-count').textContent = passCount;
+      document.getElementById('fail-count').textContent = failCount;
+      document.getElementById('warn-count').textContent = warnCount;
+
+      const resultsEl = document.getElementById('results');
+      let html = '';
+
+      // Group by status
+      const passList = tests.filter(t => t.status === 'pass');
+      const failList = tests.filter(t => t.status === 'fail');
+
+      if (passList.length > 0) {
+        html += `<div class="test-section"><h2>✅ Passing Tests (${passList.length})</h2>`;
+        passList.forEach(t => {
+          html += `<div class="test-item pass"><span class="icon">✓</span><span>${t.name}</span></div>`;
+        });
+        html += '</div>';
+      }
+
+      if (failList.length > 0) {
+        html += `<div class="test-section"><h2>❌ Failing Tests (${failList.length})</h2>`;
+        failList.forEach(t => {
+          html += `<div class="test-item fail"><span class="icon">✗</span><span>${t.name} - ${t.details}</span></div>`;
+        });
+        html += '</div>';
+      }
+
+      resultsEl.innerHTML = html;
+
+      // Populate ring table
+      const tbody = document.getElementById('ring-tbody');
+      tbody.innerHTML = RINGS.map(ring => `
+        <tr>
+          <td>${ring.id}</td>
+          <td>${ring.name}</td>
+          <td>${ring.gemstone}</td>
+          <td>${formatPrice(ring.basePrice)}</td>
+          <td>${ring.metals.join(', ')}</td>
+        </tr>
+      `).join('');
+
+      // Populate ring selector
+      const ringSelect = document.getElementById('ring-select');
+      ringSelect.innerHTML = '<option value="">-- Choose a Ring --</option>' +
+        RINGS.map(r => `<option value="${r.id}">${r.name}</option>`).join('');
+
+      // Setup filter listeners
+      document.querySelectorAll('.gemstone-filter, .metal-filter').forEach(checkbox => {
+        checkbox.addEventListener('change', updateFilterResults);
+      });
+    }
+
+    function updateFilterResults() {
+      const selectedGemstones = Array.from(document.querySelectorAll('.gemstone-filter:checked')).map(c => c.value);
+      const selectedMetals = Array.from(document.querySelectorAll('.metal-filter:checked')).map(c => c.value);
+
+      let filtered = RINGS;
+
+      if (selectedGemstones.length > 0) {
+        filtered = filtered.filter(r => selectedGemstones.some(g => r.gemstone.includes(g)));
+      }
+
+      if (selectedMetals.length > 0) {
+        filtered = filtered.filter(r => selectedMetals.some(m => r.metals.some(rm => rm.includes(m))));
+      }
+
+      const resultsBox = document.getElementById('filter-results');
+      if (filtered.length > 0) {
+        resultsBox.style.display = 'block';
+        document.getElementById('matching-rings-list').innerHTML = filtered
+          .map(r => `<div>• ${r.name} (${r.gemstone})</div>`)
+          .join('');
+      } else {
+        resultsBox.style.display = 'none';
+      }
+    }
+
+    function clearFilters() {
+      document.querySelectorAll('.gemstone-filter, .metal-filter').forEach(c => c.checked = false);
+      document.getElementById('filter-results').style.display = 'none';
+    }
+
+    function updatePricingTest() {
+      const ringId = parseInt(document.getElementById('ring-select').value);
+      const metal = document.getElementById('metal-select').value;
+      const quality = document.getElementById('quality-select').value;
+      const carat = document.getElementById('carat-select').value;
+
+      if (!ringId) return;
+
+      const ring = getRingById(ringId);
+
+      // Update metal options
+      const metalSelect = document.getElementById('metal-select');
+      metalSelect.innerHTML = '<option value="">-- Choose Metal --</option>' +
+        ring.metals.map(m => `<option value="${m}">${m}</option>`).join('');
+
+      // Update quality options
+      const qualitySelect = document.getElementById('quality-select');
+      qualitySelect.innerHTML = ring.qualities.length > 0
+        ? '<option value="">-- Choose Quality --</option>' + ring.qualities.map(q => `<option value="${q}">${q}</option>`).join('')
+        : '<option value="">N/A</option>';
+
+      // Update carat options
+      const caratSelect = document.getElementById('carat-select');
+      caratSelect.innerHTML = ring.caratOptions.length > 0
+        ? '<option value="">-- Choose Carat --</option>' + ring.caratOptions.map(c => `<option value="${c}">${c} Ct</option>`).join('')
+        : '<option value="">N/A</option>';
+
+      // Calculate and display price
+      if (metal && quality && carat) {
+        const price = calculatePrice(ring, metal, quality, carat);
+        document.getElementById('base-price-display').textContent = formatPrice(ring.basePrice);
+        document.getElementById('calculated-price-display').textContent = formatPrice(price);
+        document.getElementById('price-result').style.display = 'block';
+      }
+    }
+
+    function testAddToCart() {
+      const ring = RINGS[0];
+      addToCart(ring, ring.defaultMetal, ring.defaultQuality, ring.defaultCarat, 6);
+      document.getElementById('cart-test-result').innerHTML =
+        '<div class="results-box">✅ Successfully added ' + ring.name + ' to cart!</div>';
+    }
+
+    function testCartFunctionality() {
+      const cart = getCart();
+      const total = getCartTotal();
+      const count = getCartCount();
+      document.getElementById('cart-test-result').innerHTML = `
+        <div class="results-box">
+          <div>📦 Items in Cart: ${count}</div>
+          <div>💰 Cart Total: ${formatPrice(total)}</div>
+          <div>🎁 Items: ${cart.map(i => i.name).join(', ') || 'Empty'}</div>
+        </div>
+      `;
+    }
+
+    // Run tests when page loads
+    window.addEventListener('load', renderResults);
+    setTimeout(renderResults, 100);
+  </script>
+</body>
+</html>

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout | Tsukiyo Gems</title>
+  <meta name="description"
+    content="Complete your purchase request. We'll review and contact you within one business day.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles/global.css">
+  <link rel="stylesheet" href="styles/checkout.css">
+</head>
+
+<body>
+
+  <!-- Announcement Bars -->
+  <div class="announcement-bar-top">
+    Free Express Shipping &nbsp;|&nbsp; Free 30-Day Returns &nbsp;|&nbsp; <strong>10% OFF Sitewide —
+      Auto-Applied</strong>
+  </div>
+  <div class="announcement-bar-sub">
+    <span>24/7 Customer Support | +61-413-564-130</span>
+    <span class="contact">Lifetime Warranty | GIA Certified Gemstones</span>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-main">
+      <div class="header-search">
+        <input type="text" placeholder="Search rings, gemstones..." disabled>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8" />
+          <line x1="21" y1="21" x2="16.65" y2="16.65" />
+        </svg>
+      </div>
+      <div class="header-logo"><a href="index.html">TSUKIYO GEMS</a></div>
+      <div class="header-icons">
+        <a class="header-icon-btn" href="index.html" title="Home" style="text-decoration:none">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M3 12l9-9 9 9"/>
+            <path d="M5 10v10h5v-6h4v6h5V10"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="catalog.html">All Rings</a></li>
+        <li><a href="catalog.html?style=Halo">Halo</a></li>
+        <li><a href="catalog.html?style=Cocktail">Cocktail</a></li>
+        <li><a href="catalog.html?style=Vintage">Vintage</a></li>
+        <li><a href="catalog.html?style=Eternity">Eternity</a></li>
+        <li><a href="catalog.html?style=Statement">Statement</a></li>
+        <li><a href="catalog.html?style=Stackable">Stackable</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Checkout Layout -->
+  <div class="checkout-page">
+    <div class="checkout-progress">
+      <div class="step done"><span>1</span><label>Bag</label></div>
+      <div class="step-line"></div>
+      <div class="step active"><span>2</span><label>Details</label></div>
+      <div class="step-line"></div>
+      <div class="step"><span>3</span><label>Confirmation</label></div>
+    </div>
+
+    <div class="checkout-grid">
+
+      <!-- LEFT: Form -->
+      <section class="checkout-form-card">
+        <h1 class="checkout-title">Complete Your Request</h1>
+        <p class="checkout-subtitle">
+          Each piece is hand-finished to your specification. Submit your details and our concierge will email or call
+          you within one business day to confirm sizing, finalise the metal &amp; gemstone choice, and arrange secure
+          delivery.
+        </p>
+
+        <form id="checkout-form" autocomplete="on" novalidate>
+
+          <h2 class="form-section-title">Contact</h2>
+          <div class="form-row two-col">
+            <div class="form-field">
+              <label for="firstName">First Name *</label>
+              <input id="firstName" name="firstName" type="text" required autocomplete="given-name">
+            </div>
+            <div class="form-field">
+              <label for="lastName">Last Name *</label>
+              <input id="lastName" name="lastName" type="text" required autocomplete="family-name">
+            </div>
+          </div>
+          <div class="form-row two-col">
+            <div class="form-field">
+              <label for="email">Email *</label>
+              <input id="email" name="email" type="email" required autocomplete="email">
+            </div>
+            <div class="form-field">
+              <label for="phone">Phone *</label>
+              <input id="phone" name="phone" type="tel" required autocomplete="tel"
+                     placeholder="e.g. +61 413 000 000">
+            </div>
+          </div>
+
+          <h2 class="form-section-title">Shipping Address</h2>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="address1">Street Address *</label>
+              <input id="address1" name="address1" type="text" required autocomplete="address-line1">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="address2">Apartment / Suite (optional)</label>
+              <input id="address2" name="address2" type="text" autocomplete="address-line2">
+            </div>
+          </div>
+          <div class="form-row two-col">
+            <div class="form-field">
+              <label for="city">City / Suburb *</label>
+              <input id="city" name="city" type="text" required autocomplete="address-level2">
+            </div>
+            <div class="form-field">
+              <label for="region">State / Region *</label>
+              <input id="region" name="region" type="text" required autocomplete="address-level1">
+            </div>
+          </div>
+          <div class="form-row two-col">
+            <div class="form-field">
+              <label for="postcode">Postcode *</label>
+              <input id="postcode" name="postcode" type="text" required autocomplete="postal-code">
+            </div>
+            <div class="form-field">
+              <label for="country">Country *</label>
+              <select id="country" name="country" required autocomplete="country-name">
+                <option value="">Select country…</option>
+                <option>Australia</option>
+                <option>New Zealand</option>
+                <option>United States</option>
+                <option>United Kingdom</option>
+                <option>Canada</option>
+                <option>Singapore</option>
+                <option>Hong Kong</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+
+          <h2 class="form-section-title">Sizing &amp; Personalisation</h2>
+          <div class="form-row two-col">
+            <div class="form-field">
+              <label for="sizeCountry">Ring Size Standard</label>
+              <select id="sizeCountry" name="sizeCountry">
+                <option>US / Canada</option>
+                <option>UK / Australia</option>
+                <option>European</option>
+                <option>Asian</option>
+                <option>Not sure — please advise</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label for="ringSize">Ring Size</label>
+              <input id="ringSize" name="ringSize" type="text"
+                     placeholder="e.g. 6.5">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="engraving">Engraving Message (optional, max 20 chars)</label>
+              <input id="engraving" name="engraving" type="text" maxlength="20"
+                     placeholder="e.g. Forever, J &amp; A">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label for="notes">Notes for our Concierge (optional)</label>
+              <textarea id="notes" name="notes" rows="4"
+                        placeholder="Tell us about the occasion, special requests, or questions..."></textarea>
+            </div>
+          </div>
+
+          <h2 class="form-section-title">Preferred Contact</h2>
+          <div class="form-row two-col">
+            <div class="form-field">
+              <label for="contactMethod">Method</label>
+              <select id="contactMethod" name="contactMethod">
+                <option>Email</option>
+                <option>Phone Call</option>
+                <option>SMS</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label for="contactTime">Best Time</label>
+              <select id="contactTime" name="contactTime">
+                <option>Anytime</option>
+                <option>Morning (9am–12pm)</option>
+                <option>Afternoon (12pm–5pm)</option>
+                <option>Evening (5pm–8pm)</option>
+              </select>
+            </div>
+          </div>
+
+          <label class="form-check">
+            <input type="checkbox" id="newsletter" name="newsletter">
+            Subscribe to receive new collection updates and styling notes.
+          </label>
+
+          <label class="form-check">
+            <input type="checkbox" id="agree" name="agree" required>
+            I understand this is a request for a hand-finished piece and that final pricing, lead time, and payment
+            instructions will be confirmed by Tsukiyo Gems concierge before any charge is made. *
+          </label>
+
+          <button type="submit" class="checkout-submit-btn" id="checkout-submit">
+            Send My Purchase Request
+          </button>
+
+          <p class="checkout-disclaimer">
+            By submitting, you agree to be contacted by our concierge team about this request. No payment is taken
+            online — payment is finalised after we confirm the details with you. Your information is kept confidential
+            and never shared.
+          </p>
+        </form>
+      </section>
+
+      <!-- RIGHT: Order Summary -->
+      <aside class="checkout-summary">
+        <div class="summary-card">
+          <h2 class="summary-title">Order Summary</h2>
+          <div class="summary-items" id="summary-items">
+            <p class="summary-empty">Your bag is empty. <a href="catalog.html">Browse rings →</a></p>
+          </div>
+          <div class="summary-totals">
+            <div class="row"><span>Subtotal</span><span id="summary-subtotal">$0</span></div>
+            <div class="row"><span>Shipping</span><span class="muted">FREE</span></div>
+            <div class="row promo"><span>Promo (10% off)</span><span class="muted" id="summary-discount">–$0</span></div>
+            <div class="row total"><span>Estimated Total</span><span id="summary-total">$0</span></div>
+          </div>
+
+          <div class="summary-promise">
+            <div class="promise-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+              </svg>
+              <span>Lifetime warranty &amp; free resizing</span>
+            </div>
+            <div class="promise-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <rect x="2" y="3" width="20" height="14" rx="2"/>
+                <line x1="8" y1="21" x2="16" y2="21"/>
+                <line x1="12" y1="17" x2="12" y2="21"/>
+              </svg>
+              <span>Free express insured shipping worldwide</span>
+            </div>
+            <div class="promise-item">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+              </svg>
+              <span>Most pieces ready in 7–14 business days</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- Confirmation Modal (hidden until submit) -->
+  <div class="confirmation-overlay" id="confirmation-overlay">
+    <div class="confirmation-card">
+      <div class="confirmation-check">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="10"/>
+          <polyline points="9 12 11 14 15 10"/>
+        </svg>
+      </div>
+      <h2>Thank you, <span id="confirm-name">friend</span>.</h2>
+      <p class="confirm-lead">Your request to purchase has been sent.</p>
+      <p>Our concierge will be in touch with you soon — usually within one business day — to confirm sizing,
+        finalise your selections and arrange secure shipping. A copy of your request has been recorded under reference
+        <strong id="confirm-ref">#TG-000000</strong>.</p>
+      <div class="confirm-meta">
+        <div><strong>Items:</strong> <span id="confirm-items">0</span></div>
+        <div><strong>Estimated Total:</strong> <span id="confirm-total">$0</span></div>
+        <div><strong>Contacting you via:</strong> <span id="confirm-channel">email</span></div>
+      </div>
+      <div class="confirmation-actions">
+        <a href="index.html" class="btn-primary" id="confirm-home">Return to Home</a>
+        <a href="catalog.html" class="btn-secondary">Continue Browsing</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="footer-col">
+        <h4>About Tsukiyo Gems</h4>
+        <p>We believe every piece of jewelry tells a story. Creating customized gemstone jewelry crafted to your exact
+          specifications since 2005.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Customer Care</h4>
+        <ul>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Return Policy</a></li>
+          <li><a href="#">Lifetime Warranty</a></li>
+          <li><a href="#">Ring Size Guide</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Our Jewelry</h4>
+        <ul>
+          <li><a href="catalog.html">All Rings</a></li>
+          <li><a href="catalog.html?style=Halo">Halo</a></li>
+          <li><a href="catalog.html?style=Cocktail">Cocktail</a></li>
+          <li><a href="catalog.html?style=Vintage">Vintage</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Newsletter</h4>
+        <p>Subscribe to receive updates on new collections and promotions.</p>
+        <div class="newsletter-form">
+          <input type="email" placeholder="Email Address">
+          <button type="button">Subscribe</button>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Tsukiyo Gems — Fine Jewelry Crafted to Order.</p>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/checkout.js"></script>
+</body>
+
+</html>

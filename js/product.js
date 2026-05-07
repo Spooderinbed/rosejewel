@@ -36,17 +36,25 @@ document.addEventListener('DOMContentLoaded', () => {
   // ============================================================
   //  GALLERY
   // ============================================================
+  function captionFor(i) {
+    const parts = [];
+    if (config.quality) parts.push(config.quality);
+    if (config.carat)   parts.push(`${config.carat} ct.tw`);
+    parts.push(config.metal);
+    const live = parts.join(' | ');
+    if (i === 0) return `Selected: ${live}`;
+    return ['Shown on hand', 'Profile view', 'Dimension detail', 'Top view', 'Side view', 'Detail'][i-1] || `View ${i+1}`;
+  }
+
   function buildGallery() {
     const galleryEl = document.getElementById('gallery-grid');
     if (!galleryEl) return;
 
     const filter = getMetalFilter(config.metal);
-    const caption = `Selected: ${config.quality} | ${config.carat} ct.tw | ${config.metal}`;
-
     galleryEl.innerHTML = ring.images.map((src, i) => `
       <div class="gallery-img-item" data-src="${src}">
         <img src="${src}" alt="${ring.name}" style="filter:${filter}">
-        <div class="gallery-caption">${i === 0 ? caption : (i === 1 ? 'Shown on hand' : i === 2 ? 'Profile view' : 'Dimension detail')}</div>
+        <div class="gallery-caption">${captionFor(i)}</div>
       </div>
     `).join('');
 
@@ -103,6 +111,12 @@ document.addEventListener('DOMContentLoaded', () => {
   function buildQualitySwatches() {
     const el = document.getElementById('quality-swatches');
     if (!el) return;
+    const section = el.closest('.config-section');
+    if (!ring.qualities || ring.qualities.length === 0) {
+      if (section) section.style.display = 'none';
+      return;
+    }
+    if (section) section.style.display = '';
     el.innerHTML = ring.qualities.map(q => `
       <div class="quality-swatch-item ${q === config.quality ? 'active' : ''}" data-quality="${q}">
         <div class="quality-swatch-circle">
@@ -126,6 +140,12 @@ document.addEventListener('DOMContentLoaded', () => {
   function buildCaratBtns() {
     const el = document.getElementById('carat-btns');
     if (!el) return;
+    const section = el.closest('.config-section');
+    if (!ring.caratOptions || ring.caratOptions.length === 0) {
+      if (section) section.style.display = 'none';
+      return;
+    }
+    if (section) section.style.display = '';
     el.innerHTML = ring.caratOptions.map(c => `
       <button class="carat-btn ${c === config.carat ? 'active' : ''}" data-carat="${c}">${c} Ct</button>
     `).join('');
@@ -204,8 +224,8 @@ document.addEventListener('DOMContentLoaded', () => {
       reviewsEl.innerHTML = `<div class="stars">${starsHtml}</div><span class="config-review-count">${ring.reviewCount} Reviews</span>`;
     }
 
-    updateConfigLabel('quality-label', 'Gemstone Quality: ', config.quality);
-    updateConfigLabel('carat-label', 'Total Carat Weight: ', `${config.carat} Ct`);
+    if (config.quality) updateConfigLabel('quality-label', 'Gemstone Quality: ', config.quality);
+    if (config.carat)   updateConfigLabel('carat-label', 'Total Carat Weight: ', `${config.carat} Ct`);
     updateConfigLabel('metal-label', 'Metal Type: ', config.metal);
 
     // Gemstone explore
@@ -217,6 +237,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Product details accordion
     const detailsBody = document.getElementById('details-body');
     if (detailsBody) {
+      const specRows = ring.specifications
+        ? Object.entries(ring.specifications).map(([k, v]) =>
+            `<tr><td>${k.replace(/([A-Z])/g, ' $1').replace(/^./, s => s.toUpperCase())}</td><td>${v}</td></tr>`
+          ).join('')
+        : '';
       detailsBody.innerHTML = `
         <p><strong>About this ring</strong></p>
         <p>${ring.description}</p>
@@ -227,7 +252,8 @@ document.addEventListener('DOMContentLoaded', () => {
           <tr><td>Gemstone</td><td>${ring.gemstone}</td></tr>
           <tr><td>Shape</td><td>${ring.shape}</td></tr>
           <tr><td>Style</td><td>${ring.style}</td></tr>
-          <tr><td>Carat Weight</td><td>${config.carat} ct.tw</td></tr>
+          ${config.carat ? `<tr><td>Carat Weight</td><td>${config.carat} ct.tw</td></tr>` : ''}
+          ${specRows}
           <tr><td>Certificate</td><td>Certificate of Authenticity</td></tr>
         </table>
       `;

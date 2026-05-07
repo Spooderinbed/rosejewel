@@ -19,38 +19,38 @@ document.addEventListener('DOMContentLoaded', () => {
   const filterConfig = [
     {
       key: 'metal', label: 'Metal Type',
-      options: ['White Gold','Yellow Gold','Rose Gold','Platinum','Two-Tone'],
+      options: ['Yellow Gold','White Gold','Rose Gold','Sterling Silver','Platinum'],
     },
     {
       key: 'gemstone', label: 'Gemstone',
-      options: ['Diamond','Blue Sapphire','Emerald','Ruby','Morganite','Aquamarine','Opal','Tanzanite','Garnet','Amethyst'],
+      options: ['Diamond','Sapphire','Opal','Tourmaline','Citrine','Smoky Quartz','Topaz','Amethyst','Turquoise','Pearl','Amber','Ruby','Chalcedony','None'],
     },
     {
       key: 'shape', label: 'Gemstone Shape',
-      options: ['Round','Oval','Pear','Emerald Cut','Cushion','Heart','Princess','Marquise'],
+      options: ['Round','Oval','Pear','Emerald Cut','Cushion','Cluster','Band','Signet'],
     },
     {
       key: 'style', label: 'Jewelry Style',
-      options: ['Solitaire','Halo','Side Stone','Three Stone','Vintage','Fashion','Eternity','Stackable'],
+      options: ['Solitaire','Halo','Cluster','Cocktail','Vintage','Fashion','Eternity','Stackable','Statement','Wedding Band'],
     },
     {
       key: 'price', label: 'Price Range',
-      options: ['Under $500','$500 - $1,000','$1,000 - $2,000','$2,000 - $3,000','$3,000 - $5,000','$5,000+'],
+      options: ['Under $750','$750 - $1,200','$1,200 - $2,000','$2,000 - $3,000','$3,000+'],
     },
   ];
 
-  // ---- Gem category images ----
+  // ---- Gem category images (using real product photos) ----
   const gemCategories = [
-    { name: 'All', img: img('diamond') },
-    { name: 'Diamond', img: img('diamond') },
-    { name: 'Sapphire', img: img('sapphire') },
-    { name: 'Emerald', img: img('emerald') },
-    { name: 'Ruby', img: img('ruby') },
-    { name: 'Morganite', img: img('morganite') },
-    { name: 'Aquamarine', img: img('aquamarine') },
-    { name: 'Tanzanite', img: img('tanzanite') },
-    { name: 'Garnet', img: img('garnet') },
-    { name: 'Amethyst', img: img('amethyst') },
+    { name: 'All',         img: img('opalCat') },
+    { name: 'Opal',        img: img('opalCat') },
+    { name: 'Sapphire',    img: img('sapphireCat') },
+    { name: 'Citrine',     img: img('citrineCat') },
+    { name: 'Smoky Quartz',img: img('smokyCat') },
+    { name: 'Amethyst',    img: img('amethystCat') },
+    { name: 'Turquoise',   img: img('turquoiseCat') },
+    { name: 'Tourmaline',  img: img('pinkCat') },
+    { name: 'Pearl',       img: img('pearlCat') },
+    { name: 'Diamond',     img: img('bandCat') },
   ];
   let activeGemCat = 'All';
 
@@ -188,12 +188,11 @@ document.addEventListener('DOMContentLoaded', () => {
       results = results.filter(r => {
         return activeFilters.price.some(range => {
           const p = r.basePrice;
-          if (range === 'Under $500') return p < 500;
-          if (range === '$500 - $1,000') return p >= 500 && p < 1000;
-          if (range === '$1,000 - $2,000') return p >= 1000 && p < 2000;
+          if (range === 'Under $750') return p < 750;
+          if (range === '$750 - $1,200') return p >= 750 && p < 1200;
+          if (range === '$1,200 - $2,000') return p >= 1200 && p < 2000;
           if (range === '$2,000 - $3,000') return p >= 2000 && p < 3000;
-          if (range === '$3,000 - $5,000') return p >= 3000 && p < 5000;
-          if (range === '$5,000+') return p >= 5000;
+          if (range === '$3,000+') return p >= 3000;
           return false;
         });
       });
@@ -314,8 +313,7 @@ document.addEventListener('DOMContentLoaded', () => {
     activeFilters = { metal: [], gemstone: [], shape: [], style: [], price: [] };
     document.querySelectorAll('#sidebar-filters input[type="checkbox"]').forEach(cb => cb.checked = false);
     displayCount = 20;
-    renderAll();
-  };
+    renderAll();  };
 
   // Initial render
   renderAll();
